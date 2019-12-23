@@ -1,10 +1,16 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.BufferedReader;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * Задание №3
@@ -52,7 +58,17 @@ public class Task3 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private Collection<String> read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+       try (Reader reader = new FileReader(file);
+               BufferedReader buffer = new BufferedReader(reader)){
+               
+           Collection<String> list = new LinkedList<>();
+           String line;
+           
+           while ((line = buffer.readLine()) != null){
+               list.add(line);
+           }
+            return new ArrayList<>(list);
+       }
     }
 
     /**
@@ -66,6 +82,8 @@ public class Task3 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, Collection<String> collection) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        try (PrintWriter output = new PrintWriter(file)){
+        for (String line : collection) output.println(line);
+        }
     }
 }

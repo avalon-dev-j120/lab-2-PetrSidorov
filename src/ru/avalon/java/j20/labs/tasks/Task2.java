@@ -3,6 +3,8 @@ package ru.avalon.java.j20.labs.tasks;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -54,8 +56,14 @@ public class Task2 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private String read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+        StringBuilder stringbuilder = new StringBuilder();
+        try (FileReader filereader = new FileReader(file)){
+            while(filereader.ready()){
+                stringbuilder = stringbuilder.append((char)filereader.read());
+        }
     }
+        return stringbuilder.toString();
+            }
 
     /**
      * Выполняет запись текстоых данных в файл в текстовом
@@ -66,6 +74,9 @@ public class Task2 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, String text) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        
+        try (FileWriter filewriter = new FileWriter(file)){
+        filewriter.write(text);
+        }
     }
 }
