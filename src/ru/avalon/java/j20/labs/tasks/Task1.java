@@ -57,10 +57,13 @@ public class Task1 implements Task {
     private String read(File file) throws IOException {
         try (InputStream input = new FileInputStream(file);
          ByteArrayOutputStream output = new ByteArrayOutputStream()){
-        byte[] buffer = new byte[20];
-        int length;
-        while((length = input.read(buffer)) != -1){
-            output.write(buffer, 0, length);
+//            int b;
+//            while((b=output.read())! =-1)
+            while(input.available() > 0)
+            {
+            int data = input.read();
+            output.write(data);
+//            output.write(b);
         }
         byte[] bytes = output.toByteArray();
         return new String(bytes);
