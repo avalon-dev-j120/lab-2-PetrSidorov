@@ -18,7 +18,18 @@ public class Task5 implements Task {
      */
     @Override
     public void run() throws IOException {
-        /*
+        String path = "resources.strings.titles" ;
+        Locale.setDefault(Locale.ENGLISH);   
+        
+       ResourceBundle bundle1 = read(path);
+       ResourceBundle bundle2 = read(path, locale);
+       
+       String string1 = bundle1.getString("menu.edit");
+       String string2 = bundle2.getString("menu.edit");
+       
+       System.out.println(string1.toString());
+       System.out.println(string2.toString());
+       /*
          * TODO(Студент): Выполнить задание №5
          *
          * 1. Реализовать метод read.
@@ -31,15 +42,13 @@ public class Task5 implements Task {
          * 4. С использованием отладчика сравнить полученные ресурсы и
          *    проверить корректность работы программы.
          */
-       String path = "resources/strings/titles" ;
-       String menuFile ="menu.file";
+
        
-       Locale.setDefault(Locale.ENGLISH);
-       ResourceBundle bundle = read(path);
-       System.out.println(bundle.getString(menuFile));
+
+
        
-       Locale locale = new Locale("ru");
-       bundle = read("resources/strings/titles", locale);
+
+       bundle = read("resources/strings/titles");
        System.out.println(bundle.getString(menuFile));
     }
 
@@ -50,7 +59,7 @@ public class Task5 implements Task {
      * @param path путь к файлу ресурсов
      * @return новый экземпляр типа {@link ResourceBundle}
      */
-    private ResourceBundle read(String path, Locale locale) {
+    private ResourceBundle read(String path) {
         ResourceBundle bundle = ResourceBundle.getBundle(path, locale);
         return bundle;
     }
@@ -61,7 +70,7 @@ public class Task5 implements Task {
      * @param path путь к файлу ресурсов
      * @return новый экземпляр типа {@link ResourceBundle}
      */
-    private ResourceBundle read(String path, Locale locale) {
-        throw new UnsupportedOperationException("Not implement yet!");
-    }
+//    private ResourceBundle read(String path, Locale locale) {
+//        throw new UnsupportedOperationException("Not implement yet!");
+   
 }

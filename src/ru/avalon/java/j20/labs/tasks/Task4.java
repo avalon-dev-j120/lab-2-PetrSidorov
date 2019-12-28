@@ -36,15 +36,13 @@ public class Task4 implements Task {
      * @param path путь к конфигурации
      * @return новый экземпляр типа {@link Properties}
      */
-    private Properties read(String path) {
+    private Properties read(String path) throws IOException {
         Properties property = new Properties();
         
         try (FileInputStream input = new FileInputStream(path)){
             property.load(input);
         } 
-        catch (IOException e){
-            System.out.println("Error");
-        }
+      
         return property;
     }
 }
