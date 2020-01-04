@@ -43,6 +43,8 @@ public class Country {
     public String getName() {
         return name;
     }
+    
+
 
     /*
      * TODO(Студент): для класса Country переопределить методы equals и hashCode
@@ -61,6 +63,38 @@ public class Country {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+//        throw new UnsupportedOperationException("Not implemented yet!");
+        
+//        if (text.contains(":") || text.contains("=") ) {
+            String s = null;
+           if (text.contains(":")) s = ":";
+           if (text.contains("=")) s = "=";
+            String[] code = text.split(s, 2);
+             
+            return new Country(code[0], code[1]);
+          
+//    } 
+//        else{
+//       throw new IllegalArgumentException("Текст " + text + " не содержит :");     
+//    }
     }
+    
+    
+    @Override
+    public boolean equals(Object obj){
+    if(obj instanceof Country) {
+        Country country = (Country) obj;
+        if (this.code == country.code & this.name == country.name){
+            return true;
+        }
+            return false;
+    }
+    return false;
+    }
+    
+//    @Override
+//    public int hashCode() {
+//    char[] ch = this.code.toCharArray();
+//    return(int) ch[0] + ch[1];
+//}
 }

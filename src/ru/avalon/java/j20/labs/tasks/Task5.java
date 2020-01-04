@@ -17,19 +17,15 @@ public class Task5 implements Task {
      * {@inheritDoc}
      */
     @Override
-    public void run() throws IOException {
-        String path = "resources.strings.titles" ;
-        Locale.setDefault(Locale.ENGLISH);   
+    public void run() throws IOException {     
+        ResourceBundle resource1 = read("resources/strings/titles");
+        Locale locale = new Locale("ru");
+        ResourceBundle resource2 = read("resources/strings/titles_ru", locale);
         
-       ResourceBundle bundle1 = read(path);
-       ResourceBundle bundle2 = read(path, locale);
        
-       String string1 = bundle1.getString("menu.edit");
-       String string2 = bundle2.getString("menu.edit");
-       
-       System.out.println(string1.toString());
-       System.out.println(string2.toString());
-       /*
+         System.out.println(resource1.getString("menu.tools"));
+         System.out.println(resource2.getString("menu.tools"));
+        /*
          * TODO(Студент): Выполнить задание №5
          *
          * 1. Реализовать метод read.
@@ -42,14 +38,6 @@ public class Task5 implements Task {
          * 4. С использованием отладчика сравнить полученные ресурсы и
          *    проверить корректность работы программы.
          */
-
-       
-
-
-       
-
-       bundle = read("resources/strings/titles");
-       System.out.println(bundle.getString(menuFile));
     }
 
     /**
@@ -60,7 +48,7 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path) {
-        ResourceBundle bundle = ResourceBundle.getBundle(path, locale);
+        ResourceBundle bundle = ResourceBundle.getBundle(path);
         return bundle;
     }
 
@@ -70,7 +58,8 @@ public class Task5 implements Task {
      * @param path путь к файлу ресурсов
      * @return новый экземпляр типа {@link ResourceBundle}
      */
-//    private ResourceBundle read(String path, Locale locale) {
-//        throw new UnsupportedOperationException("Not implement yet!");
-   
+    private ResourceBundle read(String path, Locale locale) {
+        ResourceBundle bundle = ResourceBundle.getBundle(path, locale);
+        return bundle;
+    }
 }
